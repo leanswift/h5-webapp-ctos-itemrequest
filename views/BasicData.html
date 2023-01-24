@@ -1,0 +1,56 @@
+<div id="basicDataView">
+<div class="panel {{theme.panel}}">
+		<div class="panel-heading h5-cursor-pointer"  ng-model="collapseSection1" ng-click="collapseSection1=!collapseSection1">
+			<img class="h5-icon" ng-src="img/basic-data.png" title="{{::languageConstants.get('InterfaceItem')}}" alt="" />Interface Item
+		</div>
+		<div class="table-responsive h5-padding-md" ng-if="!collapseSection1">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-6">
+					<table class="inlineTable">
+						<tr>
+							<th colspan="3" class="h5-padding-md-l h5-color-graphite-dark"><h4>{{::languageConstants.get('')}}</h4></th>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('ItemNumber')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.ITNO"
+								name="Item Number"></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Interface Item Number')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.IFIN"
+								name="Interface Item Number"></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Name')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.ITDS"
+								name="Name"></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Description')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input"  ng-model="interfaceItem.userInput.FUDS"
+								name="Description"></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('ItemType')}}</h5></td>
+							<td>:</td>
+							<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="interfaceItem.userSelection.orderType"
+									theme="bootstrap" on-select="AppCtrl.sampleData1Selected($item.DIVI)"> <ui-select-match placeholder="Select Item Type">{{$select.selected.ORTP + ' - '
+								+$select.selected.TX40}}</ui-select-match> <ui-select-choices repeat="ortp.ORTP as ortp in basicData.localData.orderTypes | filter: $select.search track by ortp.ORTP">
+								<span ng-bind-html="ortp.ORTP| highlight: $select.search"></span> - <small ng-bind-html="ortp.TX40 | highlight: $select.search"></small> </ui-select-choices> </ui-select></td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			<div class="pager h5-margin-auto">
+				<ul>
+					<li><button class="h5Button {{theme.button}}" ng-click="AppCtrl.updateCustomerBasicData()">{{::languageConstants.get('SaveAll')}}</button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

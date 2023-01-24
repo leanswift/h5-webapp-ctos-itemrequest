@@ -1,0 +1,25 @@
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Node
+node_modules/
+
+# Maven
+target/
+
+# Node Modules
+node_modules/
+
+
+# Typescript
+*.map
+.DS_Store
+scripts/**/*.js
+
+# Tern plugin
+.tern-project
+
+#Operating System files
+.DS_Store

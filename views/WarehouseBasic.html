@@ -1,0 +1,68 @@
+<div id="warehousebasicDataView">
+<div class="panel {{theme.panel}}">
+		<div class="panel-heading h5-cursor-pointer"  ng-model="collapseSection1" ng-click="collapseSection1=!collapseSection1">
+			<img class="h5-icon" ng-src="img/basic-data.png" title="{{::languageConstants.get('InterfaceItem')}}" alt="" />WH Basic
+		</div>
+		<div class="table-responsive h5-padding-md" ng-if="!collapseSection1">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<table class="inlineTable">
+						<tr>
+							<th colspan="5"  class="h5-padding-md-l h5-color-graphite-dark"><h4>{{::languageConstants.get('WH Selection')}}</h4></th>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Item Number')}}</h5></td>
+							<td>:</td>
+							<!--  <td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.ITNOW"
+								name="Item Number" ng-change="interfaceItem.userInput.ITNOW = (interfaceItem.userInput.ITNOW | uppercase)"  size = 15 maxlength = 15></td>-->
+						<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="warehouseBasic.ITNOW.selected" theme="bootstrap" on-select="AppCtrl.itemnumberONSelected($item)"
+									> <ui-select-match
+									placeholder="{{::languageConstants.get('Select Item Number')}}" allow-clear=true>{{$select.selected.ITNO}}</ui-select-match> <ui-select-choices
+									repeat="itemnumber.ITNO as itemnumber in warehouseBasic.itemnumberDataList | filter: $select.search track by $index" refresh="AppCtrl.loadItemNumber($select.search)"> <span
+									ng-bind-html="itemnumber.ITNO | highlight: $select.search"></span> <small ng-bind-html="itemnumber.TX40 | highlight: $select.search"></small>
+								</ui-select-choices> </ui-select></td> 
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Status')}}</h5></td>
+							<td>:</td>
+							<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="globalSelection.statusWH.selected" theme="bootstrap"> <ui-select-match
+									placeholder="{{languageConstants.get('Select Status')}}" allow-clear=true>{{$select.selected.name}}</ui-select-match> <ui-select-choices
+									repeat="opt.id as opt in globalSelection.statusRangeWH.options | filter: $select.search track by opt.id"> <span
+									ng-bind-html="opt.name | highlight: $select.search"></span> </ui-select-choices> </ui-select></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Warehouse')}}</h5></td>
+							<td>:</td>
+						<td>
+						<ui-select class="h5-input-md {{theme.h5Dropdown}}" multiple="" ng-model="warehouseBasic.warehouseDataList1" theme="bootstrap" ng-disabled="disabled" style="width: 700px;">
+                        <ui-select-match placeholder="Select Warehouse...">{{$item.WHLO}}</ui-select-match>
+                        <ui-select-choices repeat="item.WHLO as item in warehouseBasic.warehouseDataList | filter:$select.search"  refresh="AppCtrl.itemnumberSelectedWH($select.search)"> <span
+									ng-bind-html="item.WHLO | highlight: $select.search"></span> - <small ng-bind-html="item.WHNM | highlight: $select.search"></small>
+                       </ui-select-choices>
+                         </ui-select>
+						<!--  <p>Selected: {{globalSelection.warehouse.list}}</p>
+						</td>
+						<td><button class="h5Button {{theme.button}}" ng-click="AppCtrl.loadWarehouseList1()">{{::languageConstants.get('All WH')}}</button>
+						</td>
+					   <td><button class="h5Button {{theme.button}}" ng-click="AppCtrl.clearWH()">{{::languageConstants.get('Clear WH')}}</button>
+					   </td>-->
+						</tr>
+					</table>
+				</div>
+				</div>
+			</div>
+			<div class="pager h5-margin-auto">
+				<ul>
+					<li>
+					<button class="h5Button {{theme.button}}" ng-click="AppCtrl.loadAllWarehouse()">{{::languageConstants.get('Add All WH')}}</button>
+					<button class="h5Button {{theme.button}}" ng-click="AppCtrl.clearWH()">{{::languageConstants.get('Clear WH')}}</button>
+					<button class="h5Button {{theme.button}}" ng-click="AppCtrl.validateUpdateItem()">{{::languageConstants.get('Update WH')}}</button>
+					<!-- <button class="h5Button {{theme.button}}" ng-click="AppCtrl.validateItem()" ng-disabled="!interfaceItem.enableCreate">{{::languageConstants.get('Update WH')}}</button>
+					<button class="h5Button {{theme.button}}" ng-click="" ng-disabled="!interfaceItem.enableUpdate">{{::languageConstants.get('Update')}}</button> AppCtrl.loadWarehouseListMITBAL() -->
+					<!-- <button class="h5Button {{theme.button}}" ng-click="AppCtrl.LinesLists()">{{::languageConstants.get('Find Items')}}</button>-->
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

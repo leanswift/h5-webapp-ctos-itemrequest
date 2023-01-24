@@ -1,0 +1,174 @@
+<script src="lib/jquery/jquery.min.js"></script>
+<script  type="text/javascript">
+
+//$(function(){
+//	$('#PUPR').on('input', function() {
+//      calculate();
+//    });
+//    function calculate(){
+//    	document.getElementById("button1").click();
+//    }
+//});
+
+
+</script>
+
+<div id="basicDataView">
+<div class="panel {{theme.panel}}">
+		<div class="panel-heading h5-cursor-pointer"  ng-model="collapseSection1" ng-click="collapseSection1=!collapseSection1">
+			<img class="h5-icon" ng-src="img/item-request.png" title="{{::languageConstants.get('InterfaceItem')}}" alt="" />Item Request App
+		</div>
+		<div class="table-responsive h5-padding-md" ng-if="!collapseSection1">
+			<div class="row">
+				<div class="col-sm-5">
+					<table>
+						<tr>
+							<th colspan="3" class="h5-padding-md-l h5-color-graphite-dark"><h4>{{::languageConstants.get('Item Basic')}}</h4></th>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('ItemType')}}</h5></td>
+							<td>:</td>
+							<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="interfaceItem.userSelection.itemType"
+									theme="bootstrap" on-select="AppCtrl.checkitemType($item)"> <ui-select-match placeholder="Select Item Type"  allow-clear=true>{{$select.selected.ITTY + ' - '
+								+$select.selected.TX40}}</ui-select-match> <ui-select-choices repeat="itty.ITTY as itty in globalSelection.itemType.options | filter: $select.search track by itty.ITTY">
+								<span ng-bind-html="itty.ITTY| highlight: $select.search"></span> - <small ng-bind-html="itty.TX40 | highlight: $select.search"></small> </ui-select-choices> </ui-select></td>
+						<!-- <td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="interfaceItem.userSelection.itemType"
+									theme="bootstrap" on-select="AppCtrl.checkitemType($item)"> <ui-select-match placeholder="Select Item Type"  allow-clear=true>{{$select.selected.ITTY + ' - '
+								+$select.selected.TX40}}</ui-select-match> <ui-select-choices repeat="itty.ITTY as itty in interfaceItem.itemTypeList | filter: $select.search track by itty.ITTY">
+								<span ng-bind-html="itty.ITTY| highlight: $select.search"></span> - <small ng-bind-html="itty.TX40 | highlight: $select.search"></small> </ui-select-choices> </ui-select></td>-->
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Item Number')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.IFIN"
+								name="Item Number"  style="text-transform: uppercase" size = 15 maxlength = 15></td>
+						</tr>
+						
+						<!--<tr ng-if="interfaceItem.itmType=='show'" class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Ext Item Number')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.ITNE"
+								name="Ext Item Number"  style="text-transform: uppercase" size = 40 maxlength = 40></td>
+						</tr>  -->
+						
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Item Name')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.ITDS"
+								name="Name" size = 30 maxlength = 30></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Item Description')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input-md"  ng-model="interfaceItem.userInput.FUDS"
+								name="Description" size = 60 maxlength = 60></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Status')}}</h5></td>
+							<td>:</td>
+							<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="interfaceItem.userSelection.statusType"
+									theme="bootstrap"> <ui-select-match placeholder="Select Status"  allow-clear=true>{{$select.selected.STAT}}</ui-select-match> 
+									<ui-select-choices repeat="stat.STAT as stat in globalSelection.statusType.options | filter: $select.search track by stat.STAT">
+								<span ng-bind-html="stat.STAT| highlight: $select.search"></span> </ui-select-choices> </ui-select></td>
+						</tr>
+						
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Basic U/M')}}</h5></td>
+							<td>:</td>
+							<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="globalSelection.uomData"
+									theme="bootstrap"> <ui-select-match placeholder="Select Basic U/M" allow-clear=true>{{$select.selected.STKY + ' - '
+								+$select.selected.TX40}}</ui-select-match> <ui-select-choices
+									repeat="stky.STKY as stky in globalSelection.uomList | filter: $select.search track by stky.STKY"> <span
+									ng-bind-html="stky.STKY | highlight: $select.search"></span> - <small ng-bind-html="stky.TX40 | highlight: $select.search"></small> </ui-select-choices> </ui-select></td>
+						</tr>
+						
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Warehouse')}}</h5></td>
+							<td>:</td>
+							<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="globalSelection.warehouse1" theme="bootstrap"
+									on-select="AppCtrl.checkwhlo($item)"> <ui-select-match placeholder="Select a Warehouse" allow-clear=true
+									>{{$select.selected.WHLO}}</ui-select-match> <ui-select-choices
+									repeat="warehouse.WHLO as warehouse in globalSelection.warehouseList | filter: $select.search | limitTo:infiniteScroll.currentItems track by warehouse.WHLO"
+									infinite-scroll="AppCtrl.addMoreItemsToScroll()" infinite-scroll-distance="2"> <span
+									ng-bind-html="warehouse.WHLO | highlight: $select.search"></span>  <small ng-bind-html="warehouse.WHNM | highlight: $select.search"></small></ui-select-choices> </ui-select></td>
+						</tr>
+						
+						
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Requestor')}}</h5></td>
+							<td>:</td>
+							<!--<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.RESPD.selected"
+								name="Item Responsible" ng-change="interfaceItem.userInput.RESP = (interfaceItem.userInput.RESP | uppercase)"></td>-->
+						<td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="interfaceItem.userInput1.USIDD" theme="bootstrap"
+									on-select="AppCtrl.checkresp($item)"> <ui-select-match
+									placeholder="{{::languageConstants.get('Select Requestor')}}" allow-clear=true>{{$select.selected.USID}}</ui-select-match> <ui-select-choices
+									repeat="resp.USID as resp in interfaceItem.responsibleList | filter: $select.search track by $index" refresh="AppCtrl.loadResponsible($select.search)"> <span
+									ng-bind-html="resp.USID | highlight: $select.search"></span> <small ng-bind-html="resp.TX40 | highlight: $select.search"></small>
+								</ui-select-choices> </ui-select></td>
+						</tr>
+						
+					</table>
+				</div>
+				<div class="col-sm-7">
+					<table>
+					<tr>
+							<th colspan="3" class="h5-padding-md-l h5-color-graphite-dark"><h4>{{::languageConstants.get('Purchase Basic')}}</h4></th>
+						</tr>
+						
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Supplier')}}</h5></td>
+							<td>:</td>
+							<!--<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.SUNO"
+								name="Supplier" ></td>-->
+						      <td><ui-select class="h5-input-md {{theme.h5Dropdown}}" ng-model="interfaceItem.userInput.SUNO" theme="bootstrap"
+									> <ui-select-match
+									placeholder="{{::languageConstants.get('Select Supplier')}}" allow-clear=true>{{$select.selected.SUNO}}</ui-select-match> <ui-select-choices
+									repeat="supplier.SUNO as supplier in interfaceItem.supplierList | filter: $select.search track by supplier.SUNO" refresh="AppCtrl.loadSupplierList($select.search)"> <span
+									ng-bind-html="supplier.SUNO | highlight: $select.search"></span> <small ng-bind-html="supplier.SUNM | highlight: $select.search"></small>
+								</ui-select-choices> </ui-select></td>
+								
+						</tr>
+						
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Supplier Item Number')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.SITE"
+								name="Supplier Item Number" style="text-transform: uppercase" size = 30 maxlength = 30></td>
+						</tr>
+						
+						<tr class="h5-color-graphite">
+						<td ng-if="interfaceItem.label=='cost'"><h5>{{::languageConstants.get('Cost')}}</h5></td>
+						<td ng-if="interfaceItem.label=='pprice'"><h5>{{::languageConstants.get('Purchase Price')}}</h5></td>
+						<td ng-if="interfaceItem.label=='pcost'"><h5>{{::languageConstants.get('Purchase Price/St. Cost')}}</h5></td>
+						<td>:</td>
+							<td><input type="number" id ="PUPR" step="any" class="form-control h5-input"  ng-model="interfaceItem.userInput.PUPR"
+								name="PurchasePrice" ng-disabled="!interfaceItem.enableFields"></td>
+						</tr>
+						<tr ng-if="interfaceItem.attrType=='show'" class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Core Purchase Cost')}}</h5></td>
+							<td>:</td>
+							<td><input type="number" step="any" class="form-control h5-input"  ng-model="interfaceItem.userInput.OVH1"
+								name="Core Purchase Cost"></td>
+						</tr>
+						<tr ng-if="interfaceItem.attrType=='show'" class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Core Sales Charge')}}</h5></td>
+							<td>:</td>
+							<td><input type="number" step="any" class="form-control h5-input"  ng-model="interfaceItem.userInput.OVH2"
+								name="Core Sales Charge"></td>
+						</tr>
+					</table>
+				</div>
+				</div>
+			</div>
+			<div class="pager h5-margin-auto">
+				<ul>
+					<li>
+					<button class="h5Button {{theme.button}}" ng-click="AppCtrl.validateItem()"  ng-disabled="!interfaceItem.enablebutton">{{::languageConstants.get('Create Item Request')}}</button>
+					<button class="h5Button {{theme.button}}" ng-click="AppCtrl.clearFields()"  ng-disabled="!interfaceItem.enablebutton">{{::languageConstants.get('Clear Fields')}}</button>
+					<!-- <button class="h5Button {{theme.button}}" ng-click="AppCtrl.calculateQty()" id="button1" hidden >{{::languageConstants.get('cal')}}</button>   -->
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+

@@ -1,0 +1,72 @@
+<div id="sampleModule1">
+	<div class="panel {{theme.panel}}">
+		<div class="panel-heading h5-cursor-pointer" ng-model="sampleModule1.collapseSection1"
+			ng-mousedown="sampleModule1.collapseSection1=!sampleModule1.collapseSection1">
+			<img class="h5-icon" ng-src="img/SampleModule1-na.png" title="{{::languageConstants.get('Sample Data List')}}" alt="" />{{::languageConstants.get('Sample
+			Data List')}}
+		</div>
+		<div id="sampleGrid1" ui-grid="sampleModule1.sampleGrid1" ng-class="theme.h5Grid" class="h5Grid" ng-if="!sampleModule1.collapseSection1" ui-grid-selection
+			ui-grid-resize-columns ui-grid-move-columns ui-grid-auto-resize ui-grid-cellNav ui-grid-exporter ui-grid-save-state ui-grid-pinning></div>
+		<div style="clear: both"></div>
+		<div ng-if="!sampleModule1.collapseSection1">
+			<div class="table-responsive h5-padding-md">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<table class="inlineTable">
+							<tr>
+								<th colspan="3" class="h5-padding-md-l h5-color-graphite-dark"><h4>{{::languageConstants.get('Selected Row Details')}}</h4></th>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Facility')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.FACI+' - '+sampleModule1.selectedSampleDataGridRow.FACN}}</td>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Division')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.DIVI}}</td>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Warehouse')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.WHLO}}</td>
+							</tr>	
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Local Currency')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.LOCD}}</td>
+							</tr>							
+						</table>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<table class="inlineTable">
+							<tr>
+								<th colspan="3" class="h5-padding-md-l h5-color-graphite-dark"><h4>{{::languageConstants.get('Additional Information')}}</h4></th>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Entry date')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.RGDT}}</td>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Entry Time')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.RGTM}}</td>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Change Date')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.LMDT}}</td>
+							</tr>
+							<tr class="h5-color-graphite">
+								<td><h5>{{::languageConstants.get('Changed By')}}</h5></td>
+								<td>:</td>
+								<td>{{sampleModule1.selectedSampleDataGridRow.CHID}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

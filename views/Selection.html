@@ -1,0 +1,36 @@
+<div id="selectionView" class="container-fluid">
+	<div class="panel {{theme.panel}}">
+		<div class="panel-heading h5-cursor-pointer" ng-model="collapseSel" ng-click="collapseSel=!collapseSel">
+			<img class="h5-icon" ng-src="img/selection-icon.png" title="{{::languageConstants.get('Selection')}}" alt="" />{{::languageConstants.get('Selection')}}
+		</div>
+		<div class="table-responsive h5-padding-md" ng-if="!collapseSel">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<table class="inlineTable">
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Partner')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.E0PA"
+								name="Partner"></td>
+						</tr>
+						<tr class="h5-color-graphite">
+							<td><h5>{{::languageConstants.get('Message Type')}}</h5></td>
+							<td>:</td>
+							<td><input type="text" class="form-control h5-input" ng-model="interfaceItem.userInput.E065"
+								name="MessageType"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="pager h5-margin-auto">
+						<ul>
+							<li><button class="h5Button {{theme.button}}" ng-click="AppCtrl.LinesLists()">{{::languageConstants.get('Find')}}</button></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
